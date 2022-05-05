@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="a8200f82-a9e3-4fd1-a105-285880b30e10" name="microblog_db@localhost Mapping">
+      <data-sources db="4d704100-1e2f-4e16-82c4-902c785589b5" />
+      <scope>
+        <node kind="database" negative="1">
+          <node kind="schema" negative="1" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+</project>
