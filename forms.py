@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, BooleanField, SubmitField, TextAreaField
-from wtforms.validators import DataRequired, ValidationError, DataRequired, Email, EqualTo
+from wtforms.validators import DataRequired, ValidationError, DataRequired, Email, EqualTo, Length
 from models import User
 import email_validator
 
@@ -17,7 +17,7 @@ class RegistrationForm(FlaskForm):
 	def validate_username(self, username):
 		user = User.query.filter_by(username=username.data).first()
 		if user is not None:
-			raise ValidationError('Buddy, use a different username!')
+			raise ValidationError('This username is already exist!')
 
 	def validate_email(self, email):
 		email = User.query.filter_by(email=email.data).first()
@@ -35,3 +35,15 @@ class CreatePostForm(FlaskForm):
 	header = StringField('Header', validators=[DataRequired()])
 	body = TextAreaField('Body', validators=[DataRequired()])
 	submit = SubmitField('Create!')
+
+
+class EditProfileForm(FlaskForm):
+	username = StringField('Username', validators=[DataRequired()])
+	about_me = TextAreaField('About me', validators=[Length(min=0, max=200)])
+	submit = SubmitField('Submit')
+
+	def validate_username(self, username):
+		user = User.query.filter_by(username=username.data).first()
+		if user is not None:
+			raise ValidationError('This username is already exist!')
+
